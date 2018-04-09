@@ -1,7 +1,7 @@
 {
   "name": "developer-fued-backend-nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
   "engines": {
     "node": "8.11.0"
@@ -12,5 +12,8 @@
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
