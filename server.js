@@ -55,3 +55,12 @@ app.post('/answer', (req, res) => {
   });
 });
 
+app.get('/answers', (req, res) => {
+  db
+    .collection('answers')
+    .find({ question_id: req.query.question })
+    .toArray(function(error, results) {
+      if (error) return res.send(500, { error });
+      res.send(results);
+    });
+});
