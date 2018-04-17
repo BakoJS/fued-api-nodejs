@@ -46,3 +46,12 @@ app.get('/questions', (req, res) => {
     });
 });
 
+app.post('/answer', (req, res) => {
+  db.collection('answers').save(req.body, (error, result) => {
+    if (error) return res.send(500, { error });
+
+    console.log('saved to database');
+    res.sendStatus(200);
+  });
+});
+
