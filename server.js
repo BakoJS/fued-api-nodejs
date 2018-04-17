@@ -35,3 +35,14 @@ app.post('/question', (req, res) => {
     res.sendStatus(200);
   });
 });
+
+app.get('/questions', (req, res) => {
+  db
+    .collection('questions')
+    .find()
+    .toArray(function(error, results) {
+      if (error) return res.send(500, { error });
+      res.send(results);
+    });
+});
+
