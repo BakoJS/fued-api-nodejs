@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 app.post('/question', (req, res) => {
   db.collection('questions').save(req.body, (error, result) => {
-    if (error) return res.send(500, { error });
+    if (error) return res.status(500, { error }).send(req.body);
 
     console.log('saved to database');
     res.sendStatus(200);
@@ -41,14 +41,14 @@ app.get('/questions', (req, res) => {
     .collection('questions')
     .find()
     .toArray(function(error, results) {
-      if (error) return res.send(500, { error });
-      res.send(results);
+      if (error) return res.status(500, { error }).send(req.body);
+      res.status(results);
     });
 });
 
 app.post('/answer', (req, res) => {
   db.collection('answers').save(req.body, (error, result) => {
-    if (error) return res.send(500, { error });
+    if (error) return res.status(500, { error }).send(req.body);
 
     console.log('saved to database');
     res.sendStatus(200);
@@ -60,7 +60,7 @@ app.get('/answers', (req, res) => {
     .collection('answers')
     .find({ question_id: req.query.question })
     .toArray(function(error, results) {
-      if (error) return res.send(500, { error });
-      res.send(results);
+      if (error) return res.status(500, { error }).send(req.body);
+      res.status(results);
     });
 });
