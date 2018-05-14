@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 MongoClient.connect(mongoDbUrl, (err, client) => {
   if (err) return console.log(err);
-  db = client.db('devfeud');
+  db = client.db(process.env.MOGO_DB);
 
   app.listen(3000, () => {
     console.log('listening on 3000');
