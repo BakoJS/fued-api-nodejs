@@ -150,5 +150,6 @@ In order to connect to the Mongo DB from MLab. You will neet to set up a .env fi
 ```javascript
    MONGO_USER=dbusername
    MONGO_PASS=dbpassword
+   MONGO_DB=dbname
 ```
 
