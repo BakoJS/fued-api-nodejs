@@ -5,9 +5,9 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 require('dotenv').config();
 
-const mongoDbUrl = `mongodb://admin:${
+const mongoDbUrl = `mongodb://${process.env.MONGO_USER}:${
   process.env.MONGO_PASS
-}@ds239359.mlab.com:39359/devfeud`;
+}@ds041556.mlab.com:41556/feud-api`;
 
 let db;
 
