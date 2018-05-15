@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
@@ -13,13 +14,14 @@ let db;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 MongoClient.connect(mongoDbUrl, (err, client) => {
   if (err) return console.log(err);
   db = client.db(process.env.MOGO_DB);
 
-  app.listen(3000, () => {
-    console.log('listening on 3000');
+  app.listen(process.env.PORT, () => {
+    console.log(`listening on #{process.env.PORT}`);
   });
 });
 
@@ -42,7 +44,7 @@ app.get('/questions', (req, res) => {
     .find()
     .toArray(function(error, results) {
       if (error) return res.status(500, { error }).send(error);
-      res.status(results);
+      res.send(results);
     });
 });
 
