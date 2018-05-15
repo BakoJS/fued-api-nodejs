@@ -13,6 +13,7 @@ const mongoDbUrl = `mongodb://${process.env.MONGO_USER}:${
 let db;
 
 // Middleware
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
@@ -34,7 +35,7 @@ app.post('/question', (req, res) => {
     if (error) return res.status(500, { error }).send(error);
 
     console.log('saved to database');
-    res.sendStatus(200);
+    res.json(result);
   });
 });
 
@@ -44,7 +45,7 @@ app.get('/questions', (req, res) => {
     .find()
     .toArray(function(error, results) {
       if (error) return res.status(500, { error }).send(error);
-      res.send(results);
+      res.json(results);
     });
 });
 
