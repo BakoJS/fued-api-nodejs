@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
 const app = express();
 require('dotenv').config();
@@ -46,6 +47,18 @@ app.get('/questions', (req, res) => {
     .toArray(function(error, results) {
       if (error) return res.status(500, { error }).send(error);
       res.json(results);
+    });
+});
+
+app.delete('/question/:id', (req, res) => {
+  db
+    .collection('questions')
+    .remove({ _id: new ObjectId(req.params.id) }, (error, result) => {
+      if (error) {
+        console.log(error);
+      }
+
+      res.sendStatus(200);
     });
 });
 
